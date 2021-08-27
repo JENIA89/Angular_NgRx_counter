@@ -6,5 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Angular-NgRx-counter';
+  
+  counter: number = 0
+
+  add(){
+    this.counter++
+  }
+
+  sub(){
+    this.counter--
+  }
+
+  clean(){
+    this.counter = 0
+  }
+
+  hide(){
+   return this.counter <= 0
+  }
 }
