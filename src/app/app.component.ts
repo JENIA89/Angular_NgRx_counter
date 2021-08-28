@@ -1,4 +1,8 @@
+import { Observable} from 'rxjs';
+import { map} from 'rxjs/operators';
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { decrement, increment, reset, countSelector } from './reducers/counter';
 
 @Component({
   selector: 'app-root',
@@ -7,21 +11,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   
-  counter: number = 0
+  count$: Observable<number> = this.store.select(countSelector)
+  hide$ = this.count$.pipe(map(count => count <= 0))
 
-  add(){
-    this.counter++
+  constructor(private store: Store){
   }
 
-  sub(){
-    this.counter--
+  increment(){
+    this.store.dispatch(increment())
   }
 
-  clean(){
-    this.counter = 0
+  decrement(){
+    this.store.dispatch(decrement())
   }
 
-  hide(){
-   return this.counter <= 0
+  reset(){
+    this.store.dispatch(reset())
   }
 }

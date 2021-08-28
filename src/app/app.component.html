@@ -1,10 +1,10 @@
 <div class="box">
   <div class="counter">
-    <h1>{{ counter }}</h1>
+    <h1>{{ count$ | async }}</h1>
   </div>
   <div class="buttons">
-    <button (click)="add()">add</button>
-    <button (click)="sub()" [disabled]="hide()">sub</button>
-    <button (click)="clean()">0</button>
+    <button (click)="increment()">add</button>
+    <button (click)="decrement()" [disabled]="hide$ | async">sub</button>
+    <button (click)="reset()" [disabled]="hide$ | async">0</button>
   </div>
 </div>
